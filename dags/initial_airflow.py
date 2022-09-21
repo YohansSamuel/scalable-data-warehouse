@@ -1,4 +1,3 @@
-from functools import cache
 from airflow import DAG
 from airflow.decorators import task
 from datetime import datetime
@@ -8,7 +7,6 @@ with DAG(
         description='A simple tutorial DAG',
         schedule_interval="@daily",
         start_date=datetime(2022,1,1),
-        catcheup=False,
         tags=['example'],
     ) as dag:
 

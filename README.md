@@ -25,15 +25,15 @@ A city traffic department wants to collect traffic data using swarm UAVs (drones
  
         ├── models  (contains trained model)
         ├── .github (github workflows for CI/CD, CML)
-        ├── screenshots (model versioning screenshots)
+        ├── screenshots (Airflow DAG screenshots)
         ├── data  (contains data versioning metedata)
         ├── scripts (contains the main script)	
         │   ├── logger.py (logger for the project)
-        │   ├── plot.py (handles plots)
+        │   ├── 
         │   ├── preprocessing.py (dataset preprocessing)
         ├── notebooks	
-        │   ├── job_description_entity_extraction.ipynb (Extraction of job description entity)
-        │   ├── document_score.ipynb (score for the news item)
+        │   ├── 
+        │   ├── 
         ├── tests 
         │   ├── test_preprocessing.py (test for the preprocessing script)
         ├── README.md (contains the project description)

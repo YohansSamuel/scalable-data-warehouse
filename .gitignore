@@ -1,3 +1,5 @@
 scalable_dw
 .env
 logs
+dags/__pycache__/con.cpython-37.pyc
+dags/__pycache__/initial_airflow.cpython-37.pyc

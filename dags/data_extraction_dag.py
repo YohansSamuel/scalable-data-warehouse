@@ -1,13 +1,17 @@
-#importing python modules
-from airflow.providers.postgres.operators.postgres import PostgresOperator
-from airflow.providers.postgres.hooks.postgres import PostgresHook
-from airflow.operators.python import PythonOperator
-from airflow.operators.bash import BashOperator
-from datetime import datetime as dt
+#import python modules
 from datetime import timedelta
 from airflow import DAG 
+from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
+from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+from datetime import datetime as dt
 import pandas as pd
 from sqlalchemy import Numeric
+from airflow.utils.dates import datetime
+from airflow.utils.dates import timedelta
+from airflow.utils.dates import days_ago
+
 
 # Specifing the default_args
 default_args = {
@@ -25,7 +29,7 @@ def split_into_chunks(arr, n):
     return [arr[i : i + n] for i in range(0, len(arr), n)]
 
 def read_data():
-    data_df = pd.read_csv('..data/20181024_d1_0900_0930.csv', 
+    data_df = pd.read_csv('../data/20181024_d1_0900_0930.csv', 
                           skiprows=1,
                           header=None,
                           delimiter="\n",
@@ -95,20 +99,17 @@ def insert_data():
 ####################################################
 
 with DAG(
-    dag_id='dag_elt',
+    dag_id='ELT_dag',
     default_args=default_args,
     description='Upload data from CSV to Postgres and Transform it with dbt',
-    schedule_interval='@once',
-    catchup=False
+    schedule_interval='@daily',
+    start_date=days_ago(1),
+    dagrun_timeout=timedelta(minutes=60),
 ) as pg_dag:
  
-#  data_reader = PythonOperator(
-#     task_id="read_data", 
-#     python_callable=data_shape
-#   )
 
  table_creator = PostgresOperator(
-    dag='dag_elt',
+    dag= pg_dag,
     task_id="create_table", 
     postgres_conn_id="pg_server",
     sql = '''

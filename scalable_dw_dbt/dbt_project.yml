@@ -10,7 +10,7 @@ config-version: 2
 profile: 'scalable_dw_dbt'
 
 # These configurations specify where dbt should look for different types of files.
-# The `model-paths` config, for example, states that models in this project can be
+# The model-paths config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
 model-paths: ["models"]
 analysis-paths: ["analyses"]
@@ -20,7 +20,7 @@ macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
 target-path: "target"  # directory which will store compiled SQL files
-clean-targets:         # directories to be removed by `dbt clean`
+clean-targets:         # directories to be removed by dbt clean
   - "target"
   - "dbt_packages"
 
@@ -30,9 +30,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 # In this example config, we tell dbt to build all models in the example/ directory
 # as tables. These settings can be overridden in the individual model files
-# using the `{{ config(...) }}` macro.
+# using the {{ config(...) }} macro.
 models:
-  scalable_dw_dbt:
+  postgres:
     # Config indicated by + and applies to all files under models/example/
     example:
       +materialized: view

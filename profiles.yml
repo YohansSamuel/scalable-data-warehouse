@@ -1,0 +1,23 @@
+scalable_dw:
+  outputs:
+    dev:
+      type: postgres
+      threads: 5
+      host: 127.0.0.1
+      port: 5432
+      user: airflow
+      pass: airflow
+      dbname: airflow
+      schema: demo
+
+    prod:
+      type: postgres
+      threads: 5
+      host: 127.0.0.1
+      port: 5432
+      user: airflow
+      pass: airflow
+      dbname: airflow
+      schema: demo
+
+  target: dev

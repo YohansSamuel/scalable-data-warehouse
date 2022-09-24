@@ -4,3 +4,4 @@ logs
 dags/__pycache__/con.cpython-37.pyc
 dags/__pycache__/initial_airflow.cpython-37.pyc
 dags/__pycache__/data_extraction_dag.cpython-37.pyc
+target

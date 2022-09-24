@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.10
 
 LABEL maintainer="Yohans"
 
@@ -26,7 +26,7 @@ RUN pip install -r requirements.txt
 COPY profiles.yml /root/.dbt/profiles.yml
 
 # Copy source code
-COPY ./scalable_dwh_dbt /app
+COPY ./scalable_dw_dbt /app
 
 # Export environement variables for dbt
 

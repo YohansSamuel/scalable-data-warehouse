@@ -1,4 +1,4 @@
-scalable_dw:
+scalable_dw_dbt:
   outputs:
     dev:
       type: postgres

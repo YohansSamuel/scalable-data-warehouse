@@ -37,7 +37,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: [ "dbt-rpc", "serve" ]
+    command: sh -c "dbt-rpc serve"
     env_file: .env
     environment:
       - DBT_ENABLE_LEGACY_LOGGER=True
@@ -67,9 +67,10 @@ services:
       - ./scalable_dw_dbt:/app
 
 
-
   postgres:
     image: postgres:13
+    ports:
+      - 5434:5432
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -243,7 +244,21 @@ services:
     environment:
       <<: *airflow-common-env
       CONNECTION_CHECK_MAX_COUNT: "0"
-    # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
+    # Workaround for entrypoint issue. See: htt  airflow-webserver:
+    <<: *airflow-common
+    command: webserver
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfullys://github.com/apache/airflow/issues/16252
     command:
       - bash
       - -c

@@ -10,6 +10,8 @@
   - [License](#license)
 
 ## About
+<!-- import an image -->
+![flow-diagram](./screenshots/scalable_tech_stack.png)
 A city traffic department wants to collect traffic data using swarm UAVs (drones) from a number of locations in the city and use the data collected for improving traffic flow in the city and for a number of other undisclosed projects. 
 
 ## Objectives
@@ -26,14 +28,12 @@ A city traffic department wants to collect traffic data using swarm UAVs (drones
         ├── models  (contains trained model)
         ├── .github (github workflows for CI/CD, CML)
         ├── screenshots (Airflow DAG screenshots)
-        ├── data  (contains data versioning metedata)
+        ├── data (contains data versioning metedata)
         ├── scripts (contains the main script)	
         │   ├── logger.py (logger for the project)
-        │   ├── 
         │   ├── preprocessing.py (dataset preprocessing)
         ├── notebooks	
-        │   ├── 
-        │   ├── 
+        │   ├── trajectory_data_EDA.ipynb
         ├── tests 
         │   ├── test_preprocessing.py (test for the preprocessing script)
         ├── README.md (contains the project description)

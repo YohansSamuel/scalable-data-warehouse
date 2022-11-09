@@ -259,7 +259,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfullys://github.com/apache/airflow/issues/16252
-    command:
+      command:
       - bash
       - -c
       - airflow
